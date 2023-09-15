@@ -2,6 +2,8 @@ using Godot;
 
 public partial class Player : Actor
 {
+	[Export] public float StompImpulse { get; set; } = 1000.0f;
+	
 	public override void _PhysicsProcess(double delta)
 	{
 		base._PhysicsProcess(delta);
@@ -13,6 +15,15 @@ public partial class Player : Actor
 		MoveAndSlide();
 	}
 
+	public void OnEnemyDetectorAreaEntered(Area2D area)
+	{
+		Velocity = CalculateStompVelocity(Velocity, StompImpulse);
+	}
+
+	public void OnEnemyDetectorBodyEntered(Node2D body)
+	{
+		QueueFree();
+	}
 
 	private Vector2 GetDirection()
 	{
@@ -38,6 +49,13 @@ public partial class Player : Actor
 		{
 			velocity.Y = 0.0f;
 		}
+		return velocity;
+	}
+
+	private Vector2 CalculateStompVelocity(Vector2 linearVelocity, float impulse)
+	{
+		Vector2 velocity = linearVelocity;
+		velocity.Y = -impulse;
 		return velocity;
 	}
 

@@ -2,6 +2,13 @@ using Godot;
 
 public partial class Enemy : Actor
 {
+	public override void _Ready()
+	{
+		base._Ready();
+
+		Velocity = Velocity with { X = -Speed.X };
+	}
+
 	public override void _PhysicsProcess(double delta)
 	{
 		base._PhysicsProcess(delta);
@@ -16,10 +23,14 @@ public partial class Enemy : Actor
 		MoveAndSlide();
 	}
 
-	public override void _Ready()
+	public void OnStompDetectorBodyEntered(PhysicsBody2D body)
 	{
-		base._Ready();
+		if (body.GlobalPosition.Y > GetNode<Area2D>("StompDetector").GlobalPosition.Y)
+		{
+			return;
+		}
 
-		Velocity = Velocity with { X = -Speed.X };
+		GetNode<CollisionShape2D>(nameof(CollisionShape2D)).Disabled = true;
+		QueueFree();
 	}
 }
