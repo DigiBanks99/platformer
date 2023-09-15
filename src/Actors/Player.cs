@@ -3,7 +3,7 @@ using Godot;
 public partial class Player : Actor
 {
 	[Export] public float StompImpulse { get; set; } = 1000.0f;
-	
+
 	public override void _PhysicsProcess(double delta)
 	{
 		base._PhysicsProcess(delta);
