@@ -1,0 +1,57 @@
+[gd_scene load_steps=6 format=3 uid="uid://c1qlaxld5wfn3"]
+
+[ext_resource type="Theme" uid="uid://cft1w3e3jtyq8" path="res://assets/ui_theme.tres" id="1_cddtl"]
+[ext_resource type="Texture2D" uid="uid://bebspanlo148o" path="res://assets/background.png" id="1_mxrnh"]
+[ext_resource type="PackedScene" uid="uid://1272bbe7on5b" path="res://src/UserInterface/Title.tscn" id="2_ofqxq"]
+[ext_resource type="PackedScene" uid="uid://cae3ow52t1mqp" path="res://src/UserInterface/ChangeSceneButton.tscn" id="3_nuk3w"]
+[ext_resource type="PackedScene" uid="uid://butq86ic6vkv8" path="res://src/UserInterface/QuitButton.tscn" id="4_pkc6n"]
+
+[node name="MainScreen" type="Control"]
+clip_contents = true
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_cddtl")
+
+[node name="Background" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("1_mxrnh")
+expand_mode = 1
+stretch_mode = 1
+
+[node name="Title" parent="." instance=ExtResource("2_ofqxq")]
+layout_mode = 1
+offset_left = -131.909
+offset_top = 141.953
+offset_right = 136.091
+offset_bottom = 175.953
+text = "My First Godot Game"
+
+[node name="Menu" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -129.5
+offset_top = -40.0931
+offset_right = 130.5
+offset_bottom = 154.907
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="PlayButton" parent="Menu" instance=ExtResource("3_nuk3w")]
+layout_mode = 2
+NextScenePath = "res://src/Levels/Level01.tscn"
+
+[node name="QuitButton" parent="Menu" instance=ExtResource("4_pkc6n")]
+layout_mode = 2

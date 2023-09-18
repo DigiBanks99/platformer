@@ -1,0 +1,10 @@
+[gd_scene load_steps=2 format=3 uid="uid://cae3ow52t1mqp"]
+
+[ext_resource type="Script" path="res://src/UserInterface/ChangeSceneButton.cs" id="1_rjeb2"]
+
+[node name="ChangeSceneButton" type="Button"]
+size_flags_vertical = 3
+text = "Play"
+script = ExtResource("1_rjeb2")
+
+[connection signal="button_up" from="." to="." method="OnButtonUp"]
