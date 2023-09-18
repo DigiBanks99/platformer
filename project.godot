@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="platformer"
-run/main_scene="res://src/Levels/LevelTemplate.tscn"
+run/main_scene="res://src/Levels/Level01.tscn"
 config/features=PackedStringArray("4.1", "C#", "Mobile")
 config/icon="res://icon.svg"
 

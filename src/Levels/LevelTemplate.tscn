@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://hu1kisa3nila"]
+[gd_scene load_steps=9 format=3 uid="uid://hu1kisa3nila"]
 
 [ext_resource type="Script" path="res://src/Levels/LevelTemplate.cs" id="1_115bg"]
 [ext_resource type="TileSet" uid="uid://jaefp3j44f84" path="res://assets/tileset.tres" id="1_kjsaq"]
@@ -6,6 +6,8 @@
 [ext_resource type="Texture2D" uid="uid://bebspanlo148o" path="res://assets/background.png" id="2_ttm4b"]
 [ext_resource type="PackedScene" uid="uid://c32bsl6v8p348" path="res://src/Actors/Enemy.tscn" id="3_kbww6"]
 [ext_resource type="PackedScene" uid="uid://bvhp1iofdqp82" path="res://src/Objects/Coin.tscn" id="6_j8o7b"]
+[ext_resource type="PackedScene" uid="uid://dl456dyidxfcm" path="res://src/Objects/Portal.tscn" id="7_edvhe"]
+[ext_resource type="PackedScene" uid="uid://y3olcaqnj4kh" path="res://src/Levels/Level02.tscn" id="8_pnrr1"]
 
 [node name="LevelTemplate" type="Node2D"]
 script = ExtResource("1_115bg")
@@ -54,5 +56,9 @@ position = Vector2(1660, 1242)
 
 [node name="Coin3" parent="." instance=ExtResource("6_j8o7b")]
 position = Vector2(1811, 1242)
+
+[node name="Portal" parent="." instance=ExtResource("7_edvhe")]
+position = Vector2(1180, 1409)
+NextScene = ExtResource("8_pnrr1")
 
 [editable path="Player"]
