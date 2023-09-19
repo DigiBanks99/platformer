@@ -1,7 +1,8 @@
-[gd_scene load_steps=9 format=3 uid="uid://hu1kisa3nila"]
+[gd_scene load_steps=10 format=3 uid="uid://hu1kisa3nila"]
 
 [ext_resource type="Script" path="res://src/Levels/LevelTemplate.cs" id="1_115bg"]
 [ext_resource type="TileSet" uid="uid://jaefp3j44f84" path="res://assets/tileset.tres" id="1_kjsaq"]
+[ext_resource type="PackedScene" uid="uid://dk388wathp71p" path="res://src/UserInterface/UserInterface.tscn" id="2_hfitp"]
 [ext_resource type="PackedScene" uid="uid://bu56hh1u6r5vw" path="res://src/Actors/Player.tscn" id="2_nqerw"]
 [ext_resource type="Texture2D" uid="uid://bebspanlo148o" path="res://assets/background.png" id="2_ttm4b"]
 [ext_resource type="PackedScene" uid="uid://c32bsl6v8p348" path="res://src/Actors/Enemy.tscn" id="3_kbww6"]
@@ -13,6 +14,11 @@
 script = ExtResource("1_115bg")
 metadata/_edit_vertical_guides_ = [4960.0]
 metadata/_edit_horizontal_guides_ = [1660.0]
+
+[node name="UserInterfaceLayer" type="CanvasLayer" parent="."]
+layer = 100
+
+[node name="UserInterface" parent="UserInterfaceLayer" instance=ExtResource("2_hfitp")]
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 layer = -1

@@ -9,7 +9,6 @@ public partial class ChangeSceneButton : Button
 
     public void OnButtonUp()
     {
-
         GetTree().ChangeSceneToFile(NextScenePath);
     }
 

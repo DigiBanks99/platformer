@@ -4,9 +4,15 @@ using GodotUtilities;
 [Scene]
 public partial class Player : Actor
 {
+    [Node($"/root/{nameof(PlayerData)}")]
     private PlayerData _playerData;
 
     [Export] public float StompImpulse { get; set; } = 1000.0f;
+
+    public override void _Ready()
+    {
+        WireNodes();
+    }
 
     public override void _PhysicsProcess(double delta)
     {
@@ -17,15 +23,6 @@ public partial class Player : Actor
         Velocity = CalculateVelocity(Velocity, direction, Speed, isJumpInterrupted);
         UpDirection = Vector2.Up;
         MoveAndSlide();
-    }
-
-    public override void _Notification(int what)
-    {
-        if (what == NotificationSceneInstantiated)
-        {
-            WireNodes();
-            _playerData = GetNode<PlayerData>($"/root/{nameof(PlayerData)}");
-        }
     }
 
     public void OnEnemyDetectorAreaEntered(Area2D area)

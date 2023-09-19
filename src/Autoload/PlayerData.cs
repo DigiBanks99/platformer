@@ -10,7 +10,7 @@ public partial class PlayerData : Node
         get => _score; set
         {
             _score = value;
-            EmitSignal(nameof(ScoreUpdatedEventHandler), _score);
+            EmitSignal(nameof(ScoreUpdatedEventHandler).Replace("EventHandler", ""), _score);
         }
     }
 
@@ -19,7 +19,7 @@ public partial class PlayerData : Node
         get => _deaths; set
         {
             _deaths = value;
-            EmitSignal(nameof(PlayerDiedEventHandler), _deaths);
+            EmitSignal(nameof(PlayerDiedEventHandler).Replace("EventHandler", ""), _deaths);
         }
     }
 

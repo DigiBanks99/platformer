@@ -7,15 +7,12 @@ public partial class Coin : Area2D
     [Export] public int ScoreValue { get; set; }
     [Node]
     private AnimationPlayer _animationPlayer;
+    [Node($"/root/{nameof(PlayerData)}")]
     private PlayerData _playerData;
 
-    public override void _Notification(int what)
+    public override void _Ready()
     {
-        if (what == NotificationSceneInstantiated)
-        {
-            WireNodes();
-            _playerData = GetNode<PlayerData>($"/root/{nameof(PlayerData)}");
-        }
+        WireNodes();
     }
 
     public void OnBodyEntered(Node2D body)
