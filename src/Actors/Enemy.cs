@@ -8,10 +8,11 @@ public partial class Enemy : Actor
 
     [Node($"/root/{nameof(PlayerData)}")]
     private PlayerData _playerData;
+    [Node]
+    private CollisionShape2D _collisionShape2D;
 
     public override void _Ready()
     {
-        base._Ready();
         WireNodes();
 
         Velocity = Velocity with { X = -Speed.X };
@@ -43,8 +44,8 @@ public partial class Enemy : Actor
 
     private void Die()
     {
-        GetNode<CollisionShape2D>(nameof(CollisionShape2D)).Disabled = true;
-        QueueFree();
+        _collisionShape2D.Disabled = true;
         _playerData.Score += ScoreValue;
+        QueueFree();
     }
 }

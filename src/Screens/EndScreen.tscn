@@ -1,6 +1,7 @@
-[gd_scene load_steps=6 format=3 uid="uid://cv0x6jdmsm088"]
+[gd_scene load_steps=7 format=3 uid="uid://cv0x6jdmsm088"]
 
 [ext_resource type="Theme" uid="uid://cft1w3e3jtyq8" path="res://assets/ui_theme.tres" id="1_svpss"]
+[ext_resource type="Script" path="res://src/Screens/EndScreen.cs" id="2_g1qw2"]
 [ext_resource type="Texture2D" uid="uid://bebspanlo148o" path="res://assets/background.png" id="2_r7ugh"]
 [ext_resource type="PackedScene" uid="uid://cae3ow52t1mqp" path="res://src/UserInterface/ChangeSceneButton.tscn" id="3_rsdao"]
 [ext_resource type="PackedScene" uid="uid://butq86ic6vkv8" path="res://src/UserInterface/QuitButton.tscn" id="4_ue5h4"]
@@ -16,6 +17,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 theme = ExtResource("1_svpss")
+script = ExtResource("2_g1qw2")
 
 [node name="Background" type="TextureRect" parent="."]
 layout_mode = 1
@@ -55,8 +57,8 @@ offset_bottom = -16.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_font_sizes/font_size = 18
-text = "Your final score is: %s
-You died %s times"
+text = "Your final score is: {0}
+You died {1} times"
 horizontal_alignment = 1
 
 [node name="Menu" type="VBoxContainer" parent="."]

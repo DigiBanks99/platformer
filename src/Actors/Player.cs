@@ -71,8 +71,8 @@ public partial class Player : Actor
 
     private void Die()
     {
-        QueueFree();
         _playerData.Deaths++;
+        QueueFree();
     }
 
 }
