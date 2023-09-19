@@ -1,7 +1,5 @@
 using Godot;
-using System;
 using System.Collections.Generic;
-using System.IO;
 
 [Tool]
 public partial class ChangeSceneButton : Button

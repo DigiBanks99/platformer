@@ -74,6 +74,7 @@ _data = {
 [node name="Coin" type="Area2D"]
 light_mask = 4
 script = ExtResource("1_b2g5o")
+ScoreValue = 100
 
 [node name="Coin" type="Sprite2D" parent="."]
 position = Vector2(0, 10)

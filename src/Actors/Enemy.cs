@@ -1,7 +1,13 @@
 using Godot;
+using GodotUtilities;
 
+[Scene]
 public partial class Enemy : Actor
 {
+	[Export] public int ScoreValue { get; set; }
+
+	private PlayerData _playerData;
+
 	public override void _Ready()
 	{
 		base._Ready();
@@ -23,14 +29,29 @@ public partial class Enemy : Actor
 		MoveAndSlide();
 	}
 
-	public void OnStompDetectorBodyEntered(PhysicsBody2D body)
-	{
-		if (body.GlobalPosition.Y > GetNode<Area2D>("StompDetector").GlobalPosition.Y)
+    public override void _Notification(int what)
+    {
+        if (what == NotificationSceneInstantiated)
 		{
-			return;
-		}
+			WireNodes();
+            _playerData = GetNode<PlayerData>($"/root/{nameof(PlayerData)}");
+        }
+    }
 
-		GetNode<CollisionShape2D>(nameof(CollisionShape2D)).Disabled = true;
-		QueueFree();
-	}
+    public void OnStompDetectorBodyEntered(PhysicsBody2D body)
+    {
+        if (body.GlobalPosition.Y > GetNode<Area2D>("StompDetector").GlobalPosition.Y)
+        {
+            return;
+        }
+
+        Die();
+    }
+
+    private void Die()
+    {
+        GetNode<CollisionShape2D>(nameof(CollisionShape2D)).Disabled = true;
+        QueueFree();
+		_playerData.Score += ScoreValue;
+    }
 }

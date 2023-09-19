@@ -1,7 +1,8 @@
-[gd_scene load_steps=9 format=3 uid="uid://5wgc16ty1e4b"]
+[gd_scene load_steps=10 format=3 uid="uid://5wgc16ty1e4b"]
 
 [ext_resource type="Script" path="res://src/Levels/LevelTemplate.cs" id="1_sxpgc"]
 [ext_resource type="Texture2D" uid="uid://bebspanlo148o" path="res://assets/background.png" id="2_4adcp"]
+[ext_resource type="PackedScene" uid="uid://dk388wathp71p" path="res://src/UserInterface/UserInterface.tscn" id="2_x5qbs"]
 [ext_resource type="TileSet" uid="uid://jaefp3j44f84" path="res://assets/tileset.tres" id="3_kcohh"]
 [ext_resource type="PackedScene" uid="uid://bu56hh1u6r5vw" path="res://src/Actors/Player.tscn" id="4_o3fcb"]
 [ext_resource type="PackedScene" uid="uid://c32bsl6v8p348" path="res://src/Actors/Enemy.tscn" id="5_piix1"]
@@ -14,10 +15,15 @@ script = ExtResource("1_sxpgc")
 metadata/_edit_vertical_guides_ = [8560.0]
 metadata/_edit_horizontal_guides_ = [1660.0]
 
-[node name="CanvasLayer" type="CanvasLayer" parent="."]
+[node name="UserInterfaceLayer" type="CanvasLayer" parent="."]
+layer = 100
+
+[node name="UserInterface" parent="UserInterfaceLayer" instance=ExtResource("2_x5qbs")]
+
+[node name="BackgroundLayer" type="CanvasLayer" parent="."]
 layer = -1
 
-[node name="TextureRect" type="TextureRect" parent="CanvasLayer"]
+[node name="TextureRect" type="TextureRect" parent="BackgroundLayer"]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -39,61 +45,65 @@ position = Vector2(320, 1407)
 [node name="Camera2D" parent="Player" index="2"]
 limit_right = 8560
 
-[node name="Enemy" parent="." instance=ExtResource("5_piix1")]
-position = Vector2(2007, 1405)
-
-[node name="Enemy2" parent="." instance=ExtResource("5_piix1")]
-position = Vector2(4280, 1017)
-
-[node name="Enemy3" parent="." instance=ExtResource("5_piix1")]
-position = Vector2(5440, 1406)
-
-[node name="Enemy4" parent="." instance=ExtResource("5_piix1")]
-position = Vector2(6994, 1404)
-
 [node name="Portal" parent="." instance=ExtResource("6_l447n")]
 position = Vector2(7200, 984)
 NextScene = ExtResource("7_ir2mi")
 
-[node name="Coin" parent="." instance=ExtResource("8_i0v7o")]
+[node name="Coins" type="Node" parent="."]
+
+[node name="Coin" parent="Coins" instance=ExtResource("8_i0v7o")]
 position = Vector2(2549, 1228)
 rotation = -0.0163243
 
-[node name="Coin2" parent="." instance=ExtResource("8_i0v7o")]
+[node name="Coin2" parent="Coins" instance=ExtResource("8_i0v7o")]
 position = Vector2(2659, 1102)
 
-[node name="Coin3" parent="." instance=ExtResource("8_i0v7o")]
+[node name="Coin3" parent="Coins" instance=ExtResource("8_i0v7o")]
 position = Vector2(2842, 1023)
 
-[node name="Coin4" parent="." instance=ExtResource("8_i0v7o")]
+[node name="Coin4" parent="Coins" instance=ExtResource("8_i0v7o")]
 position = Vector2(3461, 916)
 
-[node name="Coin5" parent="." instance=ExtResource("8_i0v7o")]
+[node name="Coin5" parent="Coins" instance=ExtResource("8_i0v7o")]
 position = Vector2(3634, 1000)
 
-[node name="Coin6" parent="." instance=ExtResource("8_i0v7o")]
+[node name="Coin6" parent="Coins" instance=ExtResource("8_i0v7o")]
 position = Vector2(3754, 1122)
 
-[node name="Coin7" parent="." instance=ExtResource("8_i0v7o")]
+[node name="Coin7" parent="Coins" instance=ExtResource("8_i0v7o")]
 position = Vector2(5120, 1180)
 
-[node name="Coin8" parent="." instance=ExtResource("8_i0v7o")]
+[node name="Coin8" parent="Coins" instance=ExtResource("8_i0v7o")]
 position = Vector2(5120, 1078)
 
-[node name="Coin9" parent="." instance=ExtResource("8_i0v7o")]
+[node name="Coin9" parent="Coins" instance=ExtResource("8_i0v7o")]
 position = Vector2(5120, 986)
 
-[node name="Coin10" parent="." instance=ExtResource("8_i0v7o")]
+[node name="Coin10" parent="Coins" instance=ExtResource("8_i0v7o")]
 position = Vector2(5120, 893)
 
-[node name="Coin11" parent="." instance=ExtResource("8_i0v7o")]
+[node name="Coin11" parent="Coins" instance=ExtResource("8_i0v7o")]
 position = Vector2(6560, 1005)
 rotation = -0.0163243
 
-[node name="Coin12" parent="." instance=ExtResource("8_i0v7o")]
+[node name="Coin12" parent="Coins" instance=ExtResource("8_i0v7o")]
 position = Vector2(6746, 923)
 
-[node name="Coin13" parent="." instance=ExtResource("8_i0v7o")]
+[node name="Coin13" parent="Coins" instance=ExtResource("8_i0v7o")]
 position = Vector2(6960, 880)
+
+[node name="Enemies" type="Node" parent="."]
+
+[node name="Enemy" parent="Enemies" instance=ExtResource("5_piix1")]
+position = Vector2(2007, 1405)
+
+[node name="Enemy2" parent="Enemies" instance=ExtResource("5_piix1")]
+position = Vector2(4280, 1017)
+
+[node name="Enemy3" parent="Enemies" instance=ExtResource("5_piix1")]
+position = Vector2(5440, 1406)
+
+[node name="Enemy4" parent="Enemies" instance=ExtResource("5_piix1")]
+position = Vector2(6994, 1404)
 
 [editable path="Player"]

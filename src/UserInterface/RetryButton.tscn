@@ -1,0 +1,11 @@
+[gd_scene load_steps=2 format=3 uid="uid://dcykgylwkdwtl"]
+
+[ext_resource type="Script" path="res://src/UserInterface/RetryButton.cs" id="1_q42us"]
+
+[node name="RetryButton" type="Button"]
+size_flags_vertical = 3
+text = "Retry
+"
+script = ExtResource("1_q42us")
+
+[connection signal="button_up" from="." to="." method="OnButtonUp"]

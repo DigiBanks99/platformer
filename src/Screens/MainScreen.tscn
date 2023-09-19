@@ -7,6 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://butq86ic6vkv8" path="res://src/UserInterface/QuitButton.tscn" id="4_pkc6n"]
 
 [node name="MainScreen" type="Control"]
+process_mode = 3
 clip_contents = true
 layout_mode = 3
 anchors_preset = 15

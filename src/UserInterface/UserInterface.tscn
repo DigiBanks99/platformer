@@ -1,0 +1,77 @@
+[gd_scene load_steps=7 format=3 uid="uid://dk388wathp71p"]
+
+[ext_resource type="Theme" uid="uid://cft1w3e3jtyq8" path="res://assets/ui_theme.tres" id="1_hp8yo"]
+[ext_resource type="Script" path="res://src/UserInterface/UserInterface.cs" id="2_6p44q"]
+[ext_resource type="PackedScene" uid="uid://1272bbe7on5b" path="res://src/UserInterface/Title.tscn" id="2_ynwc1"]
+[ext_resource type="PackedScene" uid="uid://dcykgylwkdwtl" path="res://src/UserInterface/RetryButton.tscn" id="3_75gn3"]
+[ext_resource type="PackedScene" uid="uid://cae3ow52t1mqp" path="res://src/UserInterface/ChangeSceneButton.tscn" id="4_n3myq"]
+[ext_resource type="PackedScene" uid="uid://butq86ic6vkv8" path="res://src/UserInterface/QuitButton.tscn" id="5_7luoi"]
+
+[node name="UserInterface" type="Control"]
+process_mode = 3
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_hp8yo")
+script = ExtResource("2_6p44q")
+
+[node name="ScoreLabel" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -112.0
+offset_top = 40.0
+offset_right = -34.0
+offset_bottom = 74.0
+grow_horizontal = 0
+text = "Score: %s"
+horizontal_alignment = 2
+
+[node name="PauseOverlay" type="ColorRect" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.235294)
+
+[node name="Title" parent="PauseOverlay" instance=ExtResource("2_ynwc1")]
+layout_mode = 1
+anchors_preset = 8
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_top = -164.0
+offset_bottom = -130.0
+grow_vertical = 2
+text = "Paused"
+
+[node name="PauseMenu" type="VBoxContainer" parent="PauseOverlay"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -144.0
+offset_top = -84.0
+offset_right = 144.0
+offset_bottom = 156.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="RetryButton" parent="PauseOverlay/PauseMenu" instance=ExtResource("3_75gn3")]
+layout_mode = 2
+
+[node name="ChangeSceneButton" parent="PauseOverlay/PauseMenu" instance=ExtResource("4_n3myq")]
+layout_mode = 2
+text = "Main Screen"
+NextScenePath = "res://src/Screens/MainScreen.tscn"
+
+[node name="QuitButton" parent="PauseOverlay/PauseMenu" instance=ExtResource("5_7luoi")]
+layout_mode = 2

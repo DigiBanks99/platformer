@@ -1,0 +1,8 @@
+{
+  "profiles": {
+    "Platformer [Debug]": {
+      "commandName": "Project",
+      "commandLineArgs": "-e --path \"$(SolutionDir)\""
+    }
+  }
+}
