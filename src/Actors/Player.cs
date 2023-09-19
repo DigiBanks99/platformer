@@ -18,14 +18,15 @@ public partial class Player : Actor
     {
         base._PhysicsProcess(delta);
 
-        bool isJumpInterrupted = Input.IsActionJustReleased("jump") && Velocity.Y < 0.0;
+        bool isJumpInterrupted = Input.IsActionJustReleased("jump") && Velocity.Y < 0.0f;
         Vector2 direction = GetDirection();
         Velocity = CalculateVelocity(Velocity, direction, Speed, isJumpInterrupted);
-        UpDirection = Vector2.Up;
+        float snap = direction.Y == 0.0f ? Vector2.Down.Y * 60.0f : Vector2.Zero.Y;
         MoveAndSlide();
+        FloorSnapLength = snap;
     }
 
-    public void OnEnemyDetectorAreaEntered(Area2D area)
+    public void OnStompDetectorAreaEntered(Area2D area)
     {
         Velocity = CalculateStompVelocity(Velocity, StompImpulse);
     }
@@ -39,7 +40,7 @@ public partial class Player : Actor
     {
         return new(
             Input.GetActionStrength("move_right") - Input.GetActionStrength("move_left"),
-            Input.IsActionJustPressed("jump") && IsOnFloor() ? -1.0f : 1.0f);
+            Input.IsActionJustPressed("jump") && IsOnFloor() ? -Input.GetActionStrength("jump") : 0.0f);
     }
 
     private Vector2 CalculateVelocity(
@@ -50,8 +51,7 @@ public partial class Player : Actor
     {
         Vector2 velocity = linearVelocity;
         velocity.X = speed.X * direction.X;
-        velocity.Y += Gravity * (float)GetPhysicsProcessDeltaTime();
-        if (direction.Y == -1.0)
+        if (direction.Y != 0.0f)
         {
             velocity.Y = Speed.Y * direction.Y;
         }
@@ -64,9 +64,8 @@ public partial class Player : Actor
 
     private Vector2 CalculateStompVelocity(Vector2 linearVelocity, float impulse)
     {
-        Vector2 velocity = linearVelocity;
-        velocity.Y = -impulse;
-        return velocity;
+        var stompJump = Input.IsActionJustPressed("jump") ? -Speed.Y : -impulse;
+        return new Vector2(linearVelocity.X, stompJump);
     }
 
     private void Die()

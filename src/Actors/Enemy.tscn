@@ -4,10 +4,10 @@
 [ext_resource type="Texture2D" uid="uid://8quosjyrxmbq" path="res://assets/enemy.png" id="2_sbojg"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_3dbkc"]
-size = Vector2(92, 66)
+size = Vector2(80, 73)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_cr10y"]
-size = Vector2(119, 20)
+size = Vector2(80, 20)
 
 [node name="Enemy" type="CharacterBody2D"]
 collision_layer = 2
@@ -20,13 +20,8 @@ position = Vector2(0, -48)
 texture = ExtResource("2_sbojg")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(0, -33)
+position = Vector2(0, -36.5)
 shape = SubResource("RectangleShape2D_3dbkc")
-
-[node name="VisibleOnScreenEnabler2D" type="VisibleOnScreenEnabler2D" parent="."]
-position = Vector2(3.57628e-07, -10)
-scale = Vector2(1.08, 1)
-rect = Rect2(-50, -50, 100, 60)
 
 [node name="StompDetector" type="Area2D" parent="."]
 modulate = Color(0.419608, 0.356863, 0.988235, 1)
@@ -34,7 +29,12 @@ position = Vector2(0, 1)
 collision_layer = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StompDetector"]
-position = Vector2(-0.5, -76)
+position = Vector2(0, -76)
 shape = SubResource("RectangleShape2D_cr10y")
 
-[connection signal="body_entered" from="StompDetector" to="." method="OnStompDetectorBodyEntered"]
+[node name="VisibleOnScreenEnabler2D" type="VisibleOnScreenEnabler2D" parent="."]
+position = Vector2(1.66893e-06, -12.3333)
+scale = Vector2(1.02, 1.23333)
+rect = Rect2(-50, -50, 100, 60)
+
+[connection signal="area_entered" from="StompDetector" to="." method="OnStompDetectorAreaEntered"]

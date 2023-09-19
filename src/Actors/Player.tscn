@@ -1,52 +1,61 @@
-[gd_scene load_steps=5 format=3 uid="uid://bu56hh1u6r5vw"]
+[gd_scene load_steps=7 format=3 uid="uid://bu56hh1u6r5vw"]
 
 [ext_resource type="Script" path="res://src/Actors/Player.cs" id="1_tfjq3"]
 [ext_resource type="Texture2D" uid="uid://c4a4rvka3wuie" path="res://assets/player.png" id="2_g2d0p"]
 
+[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_yi2w7"]
+polygon = PackedVector2Array(-48, -82, -46, -86, -39, -93, -34, -96, 34, -96, 40, -93, 46, -86, 48, -82, 48, -15, 45, -10, 40, -4, 34, 0, -34, 0, -38, -2, -45, -9, -48, -14)
+
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_3dbkc"]
-size = Vector2(80, 80)
+size = Vector2(80, 79)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_2dvrr"]
-size = Vector2(92, 81)
+size = Vector2(92, 80)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_gvo6s"]
+size = Vector2(96, 20)
 
 [node name="Player" type="CharacterBody2D"]
-collision_mask = 8
+collision_mask = 14
 script = ExtResource("1_tfjq3")
 StompImpulse = 1600.0
-Gravity = 4000.0
-Speed = Vector2(800, 1400)
-
-[node name="Player" type="Sprite2D" parent="."]
-position = Vector2(0, -48)
-texture = ExtResource("2_g2d0p")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(0, -40)
-shape = SubResource("RectangleShape2D_3dbkc")
+Speed = Vector2(700, 1350)
 
 [node name="Camera2D" type="Camera2D" parent="."]
-zoom = Vector2(0.5, 0.5)
+zoom = Vector2(0.75, 0.75)
 limit_left = 0
-limit_top = 0
-limit_right = 4960
-limit_bottom = 1660
+limit_bottom = 1080
 limit_smoothed = true
-position_smoothing_enabled = true
-position_smoothing_speed = 7.0
-drag_horizontal_enabled = true
-drag_vertical_enabled = true
-drag_left_margin = 0.0
-drag_right_margin = 0.0
+editor_draw_limits = true
+editor_draw_drag_margin = true
+
+[node name="Player" type="Sprite2D" parent="."]
+texture = ExtResource("2_g2d0p")
+offset = Vector2(0, -48.33)
+
+[node name="LightOccluder2D" type="LightOccluder2D" parent="Player"]
+occluder = SubResource("OccluderPolygon2D_yi2w7")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -40.5)
+shape = SubResource("RectangleShape2D_3dbkc")
 
 [node name="EnemyDetector" type="Area2D" parent="."]
 modulate = Color(0, 0.407843, 0.729412, 1)
 collision_layer = 0
 collision_mask = 2
-monitorable = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="EnemyDetector"]
-position = Vector2(0, -41.5)
+modulate = Color(0.337255, 0.223529, 1, 1)
+position = Vector2(0, -48)
 shape = SubResource("RectangleShape2D_2dvrr")
 
-[connection signal="area_entered" from="EnemyDetector" to="." method="OnEnemyDetectorAreaEntered"]
+[node name="StompDetector" type="Area2D" parent="."]
+collision_mask = 18
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StompDetector"]
+modulate = Color(0.337255, 0.223529, 1, 1)
+shape = SubResource("RectangleShape2D_gvo6s")
+
 [connection signal="body_entered" from="EnemyDetector" to="." method="OnEnemyDetectorBodyEntered"]
+[connection signal="area_entered" from="StompDetector" to="." method="OnStompDetectorAreaEntered"]

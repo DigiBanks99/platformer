@@ -9,7 +9,7 @@ public partial class Enemy : Actor
     [Node($"/root/{nameof(PlayerData)}")]
     private PlayerData _playerData;
     [Node]
-    private CollisionShape2D _collisionShape2D;
+    private Area2D _stompDetector;
 
     public override void _Ready()
     {
@@ -22,19 +22,14 @@ public partial class Enemy : Actor
     {
         base._PhysicsProcess(delta);
 
-        if (IsOnWall())
-        {
-            Velocity = Velocity with { X = Velocity.X * -1 };
-        }
+        Velocity = Velocity with { X = Velocity.X * (IsOnWall() ? -1 : 1) };
 
-        Velocity = Velocity with { Y = Velocity.Y + Gravity * (float)delta };
-        UpDirection = Vector2.Up;
         MoveAndSlide();
     }
 
-    public void OnStompDetectorBodyEntered(PhysicsBody2D body)
+    public void OnStompDetectorAreaEntered(Area2D area)
     {
-        if (body.GlobalPosition.Y > GetNode<Area2D>("StompDetector").GlobalPosition.Y)
+        if (area.GlobalPosition.Y > _stompDetector.GlobalPosition.Y)
         {
             return;
         }
@@ -44,7 +39,6 @@ public partial class Enemy : Actor
 
     private void Die()
     {
-        _collisionShape2D.Disabled = true;
         _playerData.Score += ScoreValue;
         QueueFree();
     }

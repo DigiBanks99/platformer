@@ -1,7 +1,15 @@
-[gd_resource type="Theme" load_steps=2 format=3 uid="uid://cft1w3e3jtyq8"]
+[gd_resource type="Theme" load_steps=4 format=3 uid="uid://cft1w3e3jtyq8"]
 
-[ext_resource type="FontFile" path="res://assets/font_default.tres" id="1_xqca6"]
+[ext_resource type="StyleBox" uid="uid://sgbq2u2vg0m5" path="res://assets/button_normal.tres" id="1_2rp3f"]
+[ext_resource type="FontFile" uid="uid://cnhoddl6sp0p1" path="res://assets/font_default.tres" id="1_xqca6"]
+[ext_resource type="StyleBox" uid="uid://d30nxbstx8mqn" path="res://assets/button_pressed.tres" id="2_2emku"]
 
 [resource]
 default_font = ExtResource("1_xqca6")
 default_font_size = 24
+Button/styles/disabled = null
+Button/styles/focus = null
+Button/styles/hover = ExtResource("1_2rp3f")
+Button/styles/normal = ExtResource("1_2rp3f")
+Button/styles/pressed = ExtResource("2_2emku")
+VBoxContainer/constants/separation = 8

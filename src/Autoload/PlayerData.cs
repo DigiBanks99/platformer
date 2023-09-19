@@ -19,7 +19,7 @@ public partial class PlayerData : Node
         get => _deaths; set
         {
             _deaths = value;
-            EmitSignal(nameof(PlayerDiedEventHandler).Replace("EventHandler", ""), _deaths);
+            EmitSignal(nameof(PlayerDiedEventHandler).Replace("EventHandler", ""));
         }
     }
 
